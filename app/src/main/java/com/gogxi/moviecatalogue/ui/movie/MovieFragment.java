@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.gogxi.moviecatalogue.R;
 import com.gogxi.moviecatalogue.data.Movie;
-import com.gogxi.moviecatalogue.utils.DataDummy;
 
 import java.util.List;
 
@@ -47,6 +46,7 @@ public class MovieFragment extends Fragment {
         rvMovie = view.findViewById(R.id.rv_movie);
         tvNotFound = view.findViewById(R.id.tv_not_movie);
         progessMovie = view.findViewById(R.id.progress_movie);
+        showLoading(false);
     }
 
     @Override
@@ -55,13 +55,25 @@ public class MovieFragment extends Fragment {
         if (getActivity() != null) {
             MovieViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MovieViewModel.class);
             List<Movie> movies = viewModel.getMovie();
+            if (movies != null){
+                MovieAdapter movieAdapter = new MovieAdapter();
+                movieAdapter.setMovie(movies);
+                rvMovie.setLayoutManager(new LinearLayoutManager(getContext()));
+                rvMovie.setHasFixedSize(true);
+                rvMovie.setAdapter(movieAdapter);
+                if (movieAdapter.getItemCount() == 0){
+                    tvNotFound.setVisibility(View.VISIBLE);
+                }
+                showLoading(true);
+            }
+        }
+    }
 
-            MovieAdapter movieAdapter = new MovieAdapter();
-            movieAdapter.setMovie(movies);
-
-            rvMovie.setLayoutManager(new LinearLayoutManager(getContext()));
-            rvMovie.setHasFixedSize(true);
-            rvMovie.setAdapter(movieAdapter);
+    private void showLoading(boolean state) {
+        if (state){
+            progessMovie.setVisibility(View.GONE);
+        } else {
+            progessMovie.setVisibility(View.VISIBLE);
         }
     }
 }

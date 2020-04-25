@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.movie.MovieFragment">
 
-
      <ProgressBar
          android:id="@+id/progress_movie"
          android:layout_width="wrap_content"

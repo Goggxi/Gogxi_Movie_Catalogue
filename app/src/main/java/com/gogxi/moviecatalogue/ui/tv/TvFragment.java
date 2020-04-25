@@ -16,10 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.Movie;
 import com.gogxi.moviecatalogue.data.TV;
-import com.gogxi.moviecatalogue.ui.movie.MovieAdapter;
-import com.gogxi.moviecatalogue.ui.movie.MovieViewModel;
 
 import java.util.List;
 
@@ -49,6 +46,7 @@ public class TvFragment extends Fragment {
         rvTV = view.findViewById(R.id.rv_tv);
         tvNotFound = view.findViewById(R.id.tv_not_tv);
         progessTV = view.findViewById(R.id.progress_tv);
+        showLoading(false);
     }
 
     @Override
@@ -57,13 +55,26 @@ public class TvFragment extends Fragment {
         if (getActivity() != null) {
             TvViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TvViewModel.class);
             List<TV> tv = viewModel.getTV();
+            if (tv != null){
+                TVAdapter tvAdapter = new TVAdapter();
+                tvAdapter.setTV(tv);
 
-            TVAdapter tvAdapter = new TVAdapter();
-            tvAdapter.setTV(tv);
+                rvTV.setLayoutManager(new LinearLayoutManager(getContext()));
+                rvTV.setHasFixedSize(true);
+                rvTV.setAdapter(tvAdapter);
+                if (tvAdapter.getItemCount() == 0){
+                    tvNotFound.setVisibility(View.VISIBLE);
+                }
+                showLoading(true);
+            }
+        }
+    }
 
-            rvTV.setLayoutManager(new LinearLayoutManager(getContext()));
-            rvTV.setHasFixedSize(true);
-            rvTV.setAdapter(tvAdapter);
+    private void showLoading(boolean state) {
+        if (state){
+            progessTV.setVisibility(View.GONE);
+        } else {
+            progessTV.setVisibility(View.VISIBLE);
         }
     }
 }
