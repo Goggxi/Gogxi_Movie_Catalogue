@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.gogxi.moviecatalogue.R;
 import com.gogxi.moviecatalogue.data.source.entity.TV;
+import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
 
 import java.util.List;
 
@@ -26,7 +28,8 @@ import java.util.List;
 public class TvFragment extends Fragment {
     private RecyclerView rvTV;
     private TextView tvNotFound;
-    private ProgressBar progessTV;
+    private ProgressBar mProgressTV;
+    private TVAdapter tvAdapter;
 
     public TvFragment() {
         // Required empty public constructor
@@ -45,36 +48,42 @@ public class TvFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvTV = view.findViewById(R.id.rv_tv);
         tvNotFound = view.findViewById(R.id.tv_not_tv);
-        progessTV = view.findViewById(R.id.progress_tv);
-        showLoading(false);
+        mProgressTV = view.findViewById(R.id.progress_tv);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (getActivity() != null) {
-            TvViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(TvViewModel.class);
-            List<TV> tv = viewModel.getTV();
-            if (tv != null){
-                TVAdapter tvAdapter = new TVAdapter();
-                tvAdapter.setTV(tv);
+            ViewModelFactory factory = ViewModelFactory.getInstance();
+            TvViewModel viewModel = new ViewModelProvider(this, factory).get(TvViewModel.class);
 
-                rvTV.setLayoutManager(new LinearLayoutManager(getContext()));
-                rvTV.setHasFixedSize(true);
-                rvTV.setAdapter(tvAdapter);
-                if (tvAdapter.getItemCount() == 0){
-                    tvNotFound.setVisibility(View.VISIBLE);
-                }
-                showLoading(true);
-            }
+            tvAdapter = new TVAdapter();
+            viewModel.setDiscoverTV(getString(R.string.lang));
+            viewModel.getDiscoverTV().observe(this, getTV);
+            rvTV.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvTV.setAdapter(tvAdapter);
+
+            showLoading(false);
         }
     }
 
+    private Observer<List<TV>> getTV = tvs -> {
+        if (tvs != null){
+            tvAdapter.setTV(tvs);
+            tvAdapter.notifyDataSetChanged();
+            showLoading(true);
+            if (tvAdapter.getItemCount() == 0 ){
+                tvNotFound.setVisibility(View.VISIBLE);
+            }
+        }
+    };
+
     private void showLoading(boolean state) {
         if (state){
-            progessTV.setVisibility(View.GONE);
+            mProgressTV.setVisibility(View.GONE);
         } else {
-            progessTV.setVisibility(View.VISIBLE);
+            mProgressTV.setVisibility(View.VISIBLE);
         }
     }
 }

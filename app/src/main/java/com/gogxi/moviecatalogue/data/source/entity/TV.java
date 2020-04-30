@@ -3,22 +3,32 @@ package com.gogxi.moviecatalogue.data.source.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TV implements Parcelable {
-//	@SerializedName("id")
+
+	@SerializedName("id")
 	private int id;
-//	@SerializedName("name")
+
+	@SerializedName("name")
 	private String name;
-//	@SerializedName("first_air_date")
+
+	@SerializedName("first_air_date")
 	private String firstAirDate;
-//	@SerializedName("overview")
+
+	@SerializedName("overview")
 	private String overview;
-//	@SerializedName("original_language")
+
+	@SerializedName("original_language")
 	private String originalLanguage;
-//	@SerializedName("poster_path")
+
+	@SerializedName("poster_path")
 	private String posterPath;
-//	@SerializedName("backdrop_path")
+
+	@SerializedName("backdrop_path")
 	private String backdropPath;
-//	@SerializedName("vote_average")
+
+	@SerializedName("vote_average")
 	private double voteAverage;
 
 	private boolean favorite = false;

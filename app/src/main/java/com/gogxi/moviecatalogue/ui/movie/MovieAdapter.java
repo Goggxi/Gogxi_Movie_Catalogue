@@ -78,7 +78,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .into(mPoster);
             Glide.with(itemView.getContext())
                     .load(Constants.BACKDROP_URL + movie.getBackdropPath())
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_error).error(R.drawable.ic_error))
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
     }

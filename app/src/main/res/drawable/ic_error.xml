@@ -8,9 +8,9 @@
         android:top="0dp" />
 
     <item
-        android:bottom="10dp"
         android:drawable="@drawable/ic_broken_image_black"
-        android:left="10dp"
-        android:right="10dp"
-        android:top="10dp" />
+        android:bottom="100dp"
+        android:top="100dp"
+        android:left="150dp"
+        android:right="150dp"/>
 </layer-list>

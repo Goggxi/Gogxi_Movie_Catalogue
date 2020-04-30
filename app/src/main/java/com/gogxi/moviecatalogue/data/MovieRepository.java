@@ -20,13 +20,13 @@ public class MovieRepository {
     private ApiClient client;
     private MutableLiveData<List<Movie>> listMovie = new MutableLiveData<>();
 
-    public void setResultMovie(String username){
+    public void setResultMovie(String language){
         if (this.client == null){
             client = new ApiClient();
         }
         //noinspection NullableProblems
         client.getClient()
-                .getMovie(username)
+                .getMovie(language)
                 .enqueue(new Callback<MovieResponse>() {
 
                     @Override

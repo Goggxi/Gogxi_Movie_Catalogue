@@ -1,6 +1,7 @@
 package com.gogxi.moviecatalogue.data.source.remote;
 
 import com.gogxi.moviecatalogue.data.source.entity.MovieResponse;
+import com.gogxi.moviecatalogue.data.source.entity.TVResponse;
 import com.gogxi.moviecatalogue.utils.Constants;
 
 import retrofit2.Call;
@@ -13,5 +14,5 @@ public interface ApiService {
     Call<MovieResponse> getMovie(@Query("language") String language);
 
     @GET("/3/discover/tv?api_key="+ Constants.API_KEY )
-    Call<MovieResponse> getTV(@Query("language") String language);
+    Call<TVResponse> getTV(@Query("language") String language);
 }

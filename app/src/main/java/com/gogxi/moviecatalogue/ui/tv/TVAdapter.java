@@ -15,13 +15,12 @@ import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
 import com.gogxi.moviecatalogue.data.source.entity.TV;
 import com.gogxi.moviecatalogue.ui.detail.DetailActivity;
+import com.gogxi.moviecatalogue.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
-    private static final String BASE_POSTER_URL = "https://image.tmdb.org/t/p/w185";
-    private static final String BASE_BACKDROP_URL = "https://image.tmdb.org/t/p/w780";
     private List<TV> listTV = new ArrayList<>();
 
     void setTV(List<TV> listTV) {
@@ -74,12 +73,12 @@ public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
                 itemView.getContext().startActivity(intent);
             });
             Glide.with(itemView.getContext())
-                    .load(BASE_POSTER_URL + tv.getPosterPath())
+                    .load(Constants.POSTER_URL + tv.getPosterPath())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mPoster);
             Glide.with(itemView.getContext())
-                    .load(BASE_BACKDROP_URL + tv.getBackdropPath())
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_error).error(R.drawable.ic_error))
+                    .load(Constants.BACKDROP_URL + tv.getBackdropPath())
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
     }

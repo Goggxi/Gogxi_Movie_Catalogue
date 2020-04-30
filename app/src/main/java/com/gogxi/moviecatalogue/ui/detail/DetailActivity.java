@@ -78,7 +78,7 @@ public class DetailActivity extends AppCompatActivity {
                 .into(mPoster);
         Glide.with(this)
                 .load(Constants.BACKDROP_URL + movie.getBackdropPath())
-                .apply(RequestOptions.placeholderOf(R.drawable.ic_error).error(R.drawable.ic_error))
+                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                 .into(mBackdrop);
     }
 
@@ -94,7 +94,7 @@ public class DetailActivity extends AppCompatActivity {
                 .into(mPoster);
         Glide.with(this)
                 .load(Constants.BACKDROP_URL + tv.getBackdropPath())
-                .apply(RequestOptions.placeholderOf(R.drawable.ic_error).error(R.drawable.ic_error))
+                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                 .into(mBackdrop);
     }
 }

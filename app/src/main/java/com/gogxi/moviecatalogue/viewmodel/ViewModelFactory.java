@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.gogxi.moviecatalogue.ui.movie.MovieViewModel;
+import com.gogxi.moviecatalogue.ui.tv.TvViewModel;
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private static volatile ViewModelFactory INSTANCE;
@@ -26,11 +27,10 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         if (modelClass.isAssignableFrom(MovieViewModel.class)) {
             //noinspection unchecked
             return (T) new MovieViewModel();
+        } else if (modelClass.isAssignableFrom(TvViewModel.class)) {
+            //noinspection unchecked
+            return (T) new TvViewModel();
         }
-//        else if (modelClass.isAssignableFrom(TvShowsViewModel.class)) {
-//            //noinspection unchecked
-//            return (T) new TvShowsViewModel(new TvShowsRepository());
-//        }
         throw new IllegalArgumentException("Unknown ViewModel Class: " + modelClass.getName());
     }
 }

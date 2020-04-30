@@ -27,7 +27,7 @@ import java.util.List;
 public class MovieFragment extends Fragment {
     private RecyclerView rvMovie;
     private TextView tvNotFound;
-    private ProgressBar progessMovie;
+    private ProgressBar mProgressMovie;
     private MovieAdapter movieAdapter;
 
     public MovieFragment() {
@@ -47,7 +47,7 @@ public class MovieFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvMovie = view.findViewById(R.id.rv_movie);
         tvNotFound = view.findViewById(R.id.tv_not_movie);
-        progessMovie = view.findViewById(R.id.progress_movie);
+        mProgressMovie = view.findViewById(R.id.progress_movie);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class MovieFragment extends Fragment {
 
             movieAdapter = new MovieAdapter();
             viewModel.setDiscoverMovie(getString(R.string.lang));
-            viewModel.getDiscoverMovie().observe(this,getMoviePopular);
+            viewModel.getDiscoverMovie().observe(this, getMovie);
             rvMovie.setLayoutManager(new LinearLayoutManager(getContext()));
             rvMovie.setAdapter(movieAdapter);
 
@@ -67,7 +67,7 @@ public class MovieFragment extends Fragment {
         }
     }
 
-    private Observer<List<Movie>> getMoviePopular = movies -> {
+    private Observer<List<Movie>> getMovie = movies -> {
         if (movies != null){
             movieAdapter.setMovie(movies);
             movieAdapter.notifyDataSetChanged();
@@ -80,9 +80,9 @@ public class MovieFragment extends Fragment {
 
     private void showLoading(boolean state) {
         if (state){
-            progessMovie.setVisibility(View.GONE);
+            mProgressMovie.setVisibility(View.GONE);
         } else {
-            progessMovie.setVisibility(View.VISIBLE);
+            mProgressMovie.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -8,9 +8,9 @@
         android:top="0dp" />
 
     <item
-        android:bottom="10dp"
+        android:bottom="100dp"
         android:drawable="@drawable/ic_refresh_black"
-        android:left="10dp"
-        android:right="10dp"
-        android:top="10dp" />
+        android:left="250dp"
+        android:right="250dp"
+        android:top="100dp" />
 </layer-list>
