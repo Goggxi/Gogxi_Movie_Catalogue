@@ -13,15 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.Movie;
+import com.gogxi.moviecatalogue.data.source.entity.Movie;
 import com.gogxi.moviecatalogue.ui.detail.DetailActivity;
+import com.gogxi.moviecatalogue.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
-    private static final String BASE_POSTER_URL = "https://image.tmdb.org/t/p/w185";
-    private static final String BASE_BACKDROP_URL = "https://image.tmdb.org/t/p/w780";
     private List<Movie> listMovie = new ArrayList<>();
 
     void setMovie(List<Movie> listMovie) {
@@ -48,9 +47,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return listMovie.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        final TextView mTitle, mRate, mRelease;
-        final ImageView mPoster, mBackdrop;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        final TextView mTitle;
+        final TextView mRate;
+        final TextView mRelease;
+        final ImageView mPoster;
+        final ImageView mBackdrop;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,15 +69,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             mRelease.setText(movie.getReleaseDate());
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
-                intent.putExtra(String.valueOf(DetailActivity.EXTRA_MOVIE), movie.getId());
+                intent.putExtra(DetailActivity.EXTRA_MOVIE , movie);
                 itemView.getContext().startActivity(intent);
             });
             Glide.with(itemView.getContext())
-                    .load(BASE_POSTER_URL + movie.getPosterPath())
+                    .load(Constants.POSTER_URL + movie.getPosterPath())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mPoster);
             Glide.with(itemView.getContext())
-                    .load(BASE_BACKDROP_URL + movie.getBackdropPath())
+                    .load(Constants.BACKDROP_URL + movie.getBackdropPath())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_error).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }

@@ -41,6 +41,11 @@ dependencies {
 
     //architecture component
     implementation "androidx.lifecycle:lifecycle-viewmodel:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata:$archLifecycleVersion"
+
+    //Network API
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2Vesrion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit2Vesrion"
 
     //testing
     testImplementation "junit:junit:$junitVersion"

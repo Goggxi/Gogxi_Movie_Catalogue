@@ -42,6 +42,8 @@ ext {
 
     archLifecycleVersion = '2.2.0'
 
+    retrofit2Vesrion = '2.8.1'
+
     //testing
     junitVersion = '4.12'
     espressoVersion = '3.1.0'

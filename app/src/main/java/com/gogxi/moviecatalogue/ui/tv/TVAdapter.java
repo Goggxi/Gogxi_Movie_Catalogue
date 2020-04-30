@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.TV;
+import com.gogxi.moviecatalogue.data.source.entity.TV;
 import com.gogxi.moviecatalogue.ui.detail.DetailActivity;
 
 import java.util.ArrayList;
@@ -48,9 +48,12 @@ public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
         return listTV.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        final TextView mTitle, mRate, mRelease;
-        final ImageView mPoster, mBackdrop;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        final TextView mTitle;
+        final TextView mRate;
+        final TextView mRelease;
+        final ImageView mPoster;
+        final ImageView mBackdrop;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,7 +70,7 @@ public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
             mRelease.setText(tv.getFirstAirDate());
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
-                intent.putExtra(String.valueOf(DetailActivity.EXTRA_TV), tv.getId());
+                intent.putExtra(DetailActivity.EXTRA_TV, tv);
                 itemView.getContext().startActivity(intent);
             });
             Glide.with(itemView.getContext())

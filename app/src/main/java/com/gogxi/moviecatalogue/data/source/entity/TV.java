@@ -1,6 +1,9 @@
-package com.gogxi.moviecatalogue.data;
+package com.gogxi.moviecatalogue.data.source.entity;
 
-public class TV {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class TV implements Parcelable {
 //	@SerializedName("id")
 	private int id;
 //	@SerializedName("name")
@@ -33,6 +36,30 @@ public class TV {
 			this.favorite = favorite;
 		}
 	}
+
+	protected TV(Parcel in) {
+		id = in.readInt();
+		name = in.readString();
+		firstAirDate = in.readString();
+		overview = in.readString();
+		originalLanguage = in.readString();
+		posterPath = in.readString();
+		backdropPath = in.readString();
+		voteAverage = in.readDouble();
+		favorite = in.readByte() != 0;
+	}
+
+	public static final Creator<TV> CREATOR = new Creator<TV>() {
+		@Override
+		public TV createFromParcel(Parcel in) {
+			return new TV(in);
+		}
+
+		@Override
+		public TV[] newArray(int size) {
+			return new TV[size];
+		}
+	};
 
 	public int getId() {
 		return id;
@@ -104,5 +131,23 @@ public class TV {
 
 	public void setFavorite(boolean favorite) {
 		this.favorite = favorite;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(id);
+		dest.writeString(name);
+		dest.writeString(firstAirDate);
+		dest.writeString(overview);
+		dest.writeString(originalLanguage);
+		dest.writeString(posterPath);
+		dest.writeString(backdropPath);
+		dest.writeDouble(voteAverage);
+		dest.writeByte((byte) (favorite ? 1 : 0));
 	}
 }

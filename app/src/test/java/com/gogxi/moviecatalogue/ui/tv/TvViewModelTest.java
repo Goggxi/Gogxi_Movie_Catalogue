@@ -1,6 +1,6 @@
 package com.gogxi.moviecatalogue.ui.tv;
 
-import com.gogxi.moviecatalogue.data.TV;
+import com.gogxi.moviecatalogue.data.source.entity.TV;
 
 import org.junit.Before;
 import org.junit.Test;

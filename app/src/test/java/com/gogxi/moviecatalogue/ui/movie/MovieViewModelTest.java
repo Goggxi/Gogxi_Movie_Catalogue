@@ -1,6 +1,6 @@
 package com.gogxi.moviecatalogue.ui.movie;
 
-import com.gogxi.moviecatalogue.data.Movie;
+import com.gogxi.moviecatalogue.data.source.entity.Movie;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class MovieViewModelTest {
 
     @Before
     public void setUp(){
-        movieViewModel = new MovieViewModel();
+        movieViewModel = new MovieViewModel(repository);
     }
 
     @Test

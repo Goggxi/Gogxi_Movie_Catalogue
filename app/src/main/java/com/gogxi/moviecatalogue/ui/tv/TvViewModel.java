@@ -2,7 +2,7 @@ package com.gogxi.moviecatalogue.ui.tv;
 
 import androidx.lifecycle.ViewModel;
 
-import com.gogxi.moviecatalogue.data.TV;
+import com.gogxi.moviecatalogue.data.source.entity.TV;
 import com.gogxi.moviecatalogue.utils.DataDummy;
 
 import java.util.List;

@@ -1,22 +1,23 @@
 package com.gogxi.moviecatalogue.ui.movie;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.Movie;
+import com.gogxi.moviecatalogue.data.source.entity.Movie;
+import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class MovieFragment extends Fragment {
     private RecyclerView rvMovie;
     private TextView tvNotFound;
     private ProgressBar progessMovie;
+    private MovieAdapter movieAdapter;
 
     public MovieFragment() {
         // Required empty public constructor
@@ -46,28 +48,35 @@ public class MovieFragment extends Fragment {
         rvMovie = view.findViewById(R.id.rv_movie);
         tvNotFound = view.findViewById(R.id.tv_not_movie);
         progessMovie = view.findViewById(R.id.progress_movie);
-        showLoading(false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (getActivity() != null) {
-            MovieViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MovieViewModel.class);
-            List<Movie> movies = viewModel.getMovie();
-            if (movies != null){
-                MovieAdapter movieAdapter = new MovieAdapter();
-                movieAdapter.setMovie(movies);
-                rvMovie.setLayoutManager(new LinearLayoutManager(getContext()));
-                rvMovie.setHasFixedSize(true);
-                rvMovie.setAdapter(movieAdapter);
-                if (movieAdapter.getItemCount() == 0){
-                    tvNotFound.setVisibility(View.VISIBLE);
-                }
-                showLoading(true);
-            }
+            ViewModelFactory factory = ViewModelFactory.getInstance();
+            MovieViewModel viewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
+
+            movieAdapter = new MovieAdapter();
+            viewModel.setDiscoverMovie(getString(R.string.lang));
+            viewModel.getDiscoverMovie().observe(this,getMoviePopular);
+            rvMovie.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvMovie.setAdapter(movieAdapter);
+
+            showLoading(false);
         }
     }
+
+    private Observer<List<Movie>> getMoviePopular = movies -> {
+        if (movies != null){
+            movieAdapter.setMovie(movies);
+            movieAdapter.notifyDataSetChanged();
+            showLoading(true);
+            if (movieAdapter.getItemCount() == 0 ){
+                tvNotFound.setVisibility(View.VISIBLE);
+            }
+        }
+    };
 
     private void showLoading(boolean state) {
         if (state){

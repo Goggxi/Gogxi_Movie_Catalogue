@@ -39,6 +39,7 @@ public class FragmentPageAdapter extends FragmentPagerAdapter {
             case 1:
                 fragment = new TvFragment();
                 break;
+            default:
         }
         return Objects.requireNonNull(fragment);
     }

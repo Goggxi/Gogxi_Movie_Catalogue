@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.TV;
+import com.gogxi.moviecatalogue.data.source.entity.TV;
 
 import java.util.List;
 

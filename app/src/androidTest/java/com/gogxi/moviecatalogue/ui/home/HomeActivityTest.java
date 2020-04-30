@@ -4,8 +4,8 @@ import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.rule.ActivityTestRule;
 
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.Movie;
-import com.gogxi.moviecatalogue.data.TV;
+import com.gogxi.moviecatalogue.data.source.entity.Movie;
+import com.gogxi.moviecatalogue.data.source.entity.TV;
 import com.gogxi.moviecatalogue.utils.DataDummy;
 
 import org.junit.Rule;
