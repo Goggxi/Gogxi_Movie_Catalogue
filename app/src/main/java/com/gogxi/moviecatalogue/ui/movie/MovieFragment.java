@@ -10,16 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.source.entity.Movie;
 import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
-
-import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
@@ -30,7 +26,6 @@ public class MovieFragment extends Fragment {
     private RecyclerView rvMovie;
     private TextView tvNotFound;
     private ProgressBar mProgressMovie;
-    private MovieAdapter movieAdapter;
 
     public MovieFragment() {
         // Required empty public constructor
@@ -58,27 +53,24 @@ public class MovieFragment extends Fragment {
         if (getActivity() != null) {
             ViewModelFactory factory = ViewModelFactory.getInstance();
             MovieViewModel viewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
+            MovieAdapter movieAdapter = new MovieAdapter();
 
-            movieAdapter = new MovieAdapter();
-            viewModel.setDiscoverMovie(getString(R.string.lang));
-            viewModel.getDiscoverMovie().observe(this, getMovie);
+            viewModel.getMovie().observe(this, movies -> {
+                movieAdapter.setMovie(movies);
+                movieAdapter.notifyDataSetChanged();
+                if (movieAdapter.getItemCount() == 0){
+                    tvNotFound.setVisibility(View.VISIBLE);
+                }
+                showLoading(true);
+            });
+
             rvMovie.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvMovie.setHasFixedSize(true);
             rvMovie.setAdapter(new ScaleInAnimationAdapter(movieAdapter));
 
             showLoading(false);
         }
     }
-
-    private Observer<List<Movie>> getMovie = movies -> {
-        if (movies != null){
-            movieAdapter.setMovie(movies);
-            movieAdapter.notifyDataSetChanged();
-            showLoading(true);
-            if (movieAdapter.getItemCount() == 0 ){
-                tvNotFound.setVisibility(View.VISIBLE);
-            }
-        }
-    };
 
     private void showLoading(boolean state) {
         if (state){

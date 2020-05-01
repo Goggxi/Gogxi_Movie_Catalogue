@@ -1,4 +1,4 @@
-package com.gogxi.moviecatalogue.data.source.entity;
+package com.gogxi.moviecatalogue.data.remote.entity;
 
 import com.google.gson.annotations.SerializedName;
 

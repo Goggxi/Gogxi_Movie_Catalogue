@@ -11,8 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.source.entity.Movie;
-import com.gogxi.moviecatalogue.data.source.entity.TV;
+import com.gogxi.moviecatalogue.data.remote.entity.Movie;
+import com.gogxi.moviecatalogue.data.remote.entity.TV;
 import com.gogxi.moviecatalogue.utils.Constants;
 
 public class DetailActivity extends AppCompatActivity {

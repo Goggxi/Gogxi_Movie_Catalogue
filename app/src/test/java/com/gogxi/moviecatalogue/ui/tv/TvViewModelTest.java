@@ -1,14 +1,5 @@
 package com.gogxi.moviecatalogue.ui.tv;
 
-import com.gogxi.moviecatalogue.data.source.entity.TV;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
-
 public class TvViewModelTest {
     private TvViewModel tvViewModel;
 

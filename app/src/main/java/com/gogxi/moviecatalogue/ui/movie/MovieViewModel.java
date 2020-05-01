@@ -1,27 +1,21 @@
 package com.gogxi.moviecatalogue.ui.movie;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.gogxi.moviecatalogue.data.MovieRepository;
-import com.gogxi.moviecatalogue.data.source.entity.Movie;
+import com.gogxi.moviecatalogue.data.Repository;
+import com.gogxi.moviecatalogue.data.remote.entity.Movie;
 
 import java.util.List;
 
 public class MovieViewModel extends ViewModel {
-    private MovieRepository movieRepository;
+    private Repository repository;
 
-    public MovieViewModel(){
-        movieRepository = new MovieRepository();
+    public MovieViewModel(Repository repository){
+        this.repository = repository;
     }
 
-    public void setDiscoverMovie(String language){
-        movieRepository.setResultMovie(language);
-    }
-
-    public LiveData<List<Movie>> getDiscoverMovie(){
-        return movieRepository.getResultMovie();
+    LiveData<List<Movie>> getMovie(){
+        return repository.getMovie();
     }
 }

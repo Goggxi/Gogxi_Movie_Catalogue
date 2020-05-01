@@ -1,26 +1,21 @@
 package com.gogxi.moviecatalogue.ui.tv;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.source.entity.TV;
-import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.gogxi.moviecatalogue.R;
+import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
@@ -31,7 +26,6 @@ public class TvFragment extends Fragment {
     private RecyclerView rvTV;
     private TextView tvNotFound;
     private ProgressBar mProgressTV;
-    private TVAdapter tvAdapter;
 
     public TvFragment() {
         // Required empty public constructor
@@ -59,27 +53,24 @@ public class TvFragment extends Fragment {
         if (getActivity() != null) {
             ViewModelFactory factory = ViewModelFactory.getInstance();
             TvViewModel viewModel = new ViewModelProvider(this, factory).get(TvViewModel.class);
+            TVAdapter tvAdapter = new TVAdapter();
 
-            tvAdapter = new TVAdapter();
-            viewModel.setDiscoverTV(getString(R.string.lang));
-            viewModel.getDiscoverTV().observe(this, getTV);
+            viewModel.getTv().observe(this, tvs -> {
+                tvAdapter.setTV(tvs);
+                tvAdapter.notifyDataSetChanged();
+                if (tvAdapter.getItemCount() == 0){
+                    tvNotFound.setVisibility(View.VISIBLE);
+                }
+                showLoading(true);
+            });
+
             rvTV.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvTV.setHasFixedSize(true);
             rvTV.setAdapter(new ScaleInAnimationAdapter(tvAdapter));
 
             showLoading(false);
         }
     }
-
-    private Observer<List<TV>> getTV = tvs -> {
-        if (tvs != null){
-            tvAdapter.setTV(tvs);
-            tvAdapter.notifyDataSetChanged();
-            showLoading(true);
-            if (tvAdapter.getItemCount() == 0 ){
-                tvNotFound.setVisibility(View.VISIBLE);
-            }
-        }
-    };
 
     private void showLoading(boolean state) {
         if (state){

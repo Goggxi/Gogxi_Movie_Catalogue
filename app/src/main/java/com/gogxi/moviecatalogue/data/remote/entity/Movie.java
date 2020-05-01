@@ -1,4 +1,4 @@
-package com.gogxi.moviecatalogue.data.source.entity;
+package com.gogxi.moviecatalogue.data.remote.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

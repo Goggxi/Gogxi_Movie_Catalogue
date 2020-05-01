@@ -1,21 +1,22 @@
-package com.gogxi.moviecatalogue.data.source.remote;
-
-import com.gogxi.moviecatalogue.utils.Constants;
+package com.gogxi.moviecatalogue.utils;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.gogxi.moviecatalogue.utils.Constants.BASE_URL;
 
 public class ApiClient {
 
     private static Retrofit retrofit = null;
 
-    public ApiService getClient(){
+    public static Retrofit getClient(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl(Constants.BASE_URL)
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit.create(ApiService.class);
+        return retrofit;
     }
+
 }

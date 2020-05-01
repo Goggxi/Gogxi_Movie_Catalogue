@@ -1,7 +1,7 @@
 package com.gogxi.moviecatalogue.utils;
 
-import com.gogxi.moviecatalogue.data.source.entity.Movie;
-import com.gogxi.moviecatalogue.data.source.entity.TV;
+import com.gogxi.moviecatalogue.data.remote.entity.Movie;
+import com.gogxi.moviecatalogue.data.remote.entity.TV;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,17 +1,7 @@
 package com.gogxi.moviecatalogue.ui.movie;
 
-import com.gogxi.moviecatalogue.data.MovieRepository;
-import com.gogxi.moviecatalogue.data.source.entity.Movie;
-
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieViewModelTest {
