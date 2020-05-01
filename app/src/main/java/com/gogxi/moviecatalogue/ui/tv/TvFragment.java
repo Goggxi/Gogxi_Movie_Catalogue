@@ -22,6 +22,8 @@ import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
 
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -62,7 +64,7 @@ public class TvFragment extends Fragment {
             viewModel.setDiscoverTV(getString(R.string.lang));
             viewModel.getDiscoverTV().observe(this, getTV);
             rvTV.setLayoutManager(new LinearLayoutManager(getContext()));
-            rvTV.setAdapter(tvAdapter);
+            rvTV.setAdapter(new ScaleInAnimationAdapter(tvAdapter));
 
             showLoading(false);
         }

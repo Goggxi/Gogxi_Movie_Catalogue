@@ -1,5 +1,7 @@
 package com.gogxi.moviecatalogue.ui.movie;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 

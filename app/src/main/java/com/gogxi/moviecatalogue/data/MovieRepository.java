@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.gogxi.moviecatalogue.data.source.entity.Movie;
 import com.gogxi.moviecatalogue.data.source.entity.MovieResponse;
 import com.gogxi.moviecatalogue.data.source.remote.ApiClient;
+import com.gogxi.moviecatalogue.utils.EspressoIdlingResource;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public class MovieRepository {
         if (this.client == null){
             client = new ApiClient();
         }
+
+        EspressoIdlingResource.increment();
+
         //noinspection NullableProblems
         client.getClient()
                 .getMovie(language)
@@ -31,7 +35,6 @@ public class MovieRepository {
 
                     @Override
                     public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-//                        Log.d("Message", "onResponse: " + response.body());
                         MovieResponse mUsersResponse = response.body();
                         try {
                             if (mUsersResponse != null && mUsersResponse.getResults() != null){
@@ -42,11 +45,13 @@ public class MovieRepository {
                         } catch (Exception e){
                             e.printStackTrace();
                         }
+                        EspressoIdlingResource.decrement();
                     }
 
                     @Override
                     public void onFailure(Call<MovieResponse> call, Throwable t) {
                         Log.d("Message", "onFailure: " +t.getMessage());
+                        EspressoIdlingResource.decrement();
                     }
                 });
     }

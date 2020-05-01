@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.gogxi.moviecatalogue.data.source.entity.TV;
 import com.gogxi.moviecatalogue.data.source.entity.TVResponse;
 import com.gogxi.moviecatalogue.data.source.remote.ApiClient;
+import com.gogxi.moviecatalogue.utils.EspressoIdlingResource;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public class TVRepository {
         if (this.client == null){
             client = new ApiClient();
         }
+
+        EspressoIdlingResource.increment();
+
         //noinspection NullableProblems
         client.getClient()
                 .getTV(language)
@@ -42,11 +46,13 @@ public class TVRepository {
                         } catch (Exception e){
                             e.printStackTrace();
                         }
+                        EspressoIdlingResource.decrement();
                     }
 
                     @Override
                     public void onFailure(Call<TVResponse> call, Throwable t) {
                         Log.d("Message", "onFailure: " +t.getMessage());
+                        EspressoIdlingResource.decrement();
                     }
                 });
     }

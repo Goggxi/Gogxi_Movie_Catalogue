@@ -39,6 +39,7 @@ ext {
     glideVersion = '4.11.0'
     roundedimageviewVersion = '2.3.0'
     cardviewVersion = '1.0.0'
+    rvAnimatorsVersion = '3.0.0'
 
     archLifecycleVersion = '2.2.0'
 
@@ -46,6 +47,7 @@ ext {
 
     //testing
     junitVersion = '4.12'
-    espressoVersion = '3.1.0'
+    espressoVersion = '3.2.0'
     androidXTestVersion = '1.2.0'
+    mockitoVersion = '2.23.4'
 }
