@@ -10,25 +10,12 @@ import com.gogxi.moviecatalogue.data.remote.entity.TV;
 
 import java.util.List;
 
-public class Repository implements DataSource {
+public class FakeRepository implements DataSource {
 
-    private volatile static Repository INSTANCE = null;
+    private final RemoteDataSource remoteDataSource;
 
-    private RemoteDataSource remoteDataSource;
-
-    private Repository(@NonNull RemoteDataSource remoteDataSource){
+    FakeRepository(@NonNull RemoteDataSource remoteDataSource){
         this.remoteDataSource = remoteDataSource;
-    }
-
-    public static Repository getInstance(RemoteDataSource remoteDataSource){
-        if (INSTANCE == null){
-            synchronized (Repository.class){
-                if (INSTANCE == null){
-                    INSTANCE = new Repository(remoteDataSource);
-                }
-            }
-        }
-        return INSTANCE;
     }
 
     @Override
