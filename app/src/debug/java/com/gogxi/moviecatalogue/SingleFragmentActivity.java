@@ -15,27 +15,27 @@ public class SingleFragmentActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View content = new FrameLayout(this);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT,
-                Gravity.CENTER);
-        content.setLayoutParams(params);
-        content.setId(R.id.view_pager);
-
-        setContentView(content);
+//        View content = new FrameLayout(this);
+//        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+//                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT,
+//                Gravity.CENTER);
+//        content.setLayoutParams(params);
+//        content.setId(R.id.view_pager);
+//
+//        setContentView(content);
     }
 
-    public void setFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.view_pager, fragment, "TEST")
-                .commit();
-    }
-
-    public void replaceFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.view_pager, fragment)
-                .commit();
-    }
+//    public void setFragment(Fragment fragment) {
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .add(R.id.view_pager, fragment, "TEST")
+//                .commit();
+//    }
+//
+//    public void replaceFragment(Fragment fragment) {
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .add(R.id.view_pager, fragment)
+//                .commit();
+//    }
 }

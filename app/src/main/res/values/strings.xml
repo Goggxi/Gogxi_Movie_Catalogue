@@ -8,4 +8,10 @@
     <string name="not_found">Not Found</string>
     <string name="image">image</string>
     <string name="storyline">storyline</string>
+    <string name="favorite">favorite</string>
+    <string name="tv_show">tv_show</string>
+    <string name="movie">movie</string>
+    <string name="title_home">title_home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

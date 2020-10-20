@@ -1,4 +1,4 @@
-package com.gogxi.moviecatalogue.ui.home;
+package com.gogxi.moviecatalogue.ui.favorite;
 
 
 import android.content.Context;
@@ -10,10 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.ui.movie.MovieFragment;
-import com.gogxi.moviecatalogue.ui.tv.TvFragment;
-
-import java.util.Objects;
+import com.gogxi.moviecatalogue.ui.favorite.movie.MovieFavoriteFragment;
+import com.gogxi.moviecatalogue.ui.favorite.tv.TvFavoriteFragment;
 
 public class FragmentPageAdapter extends FragmentPagerAdapter {
     private final Context mContext;
@@ -23,6 +21,7 @@ public class FragmentPageAdapter extends FragmentPagerAdapter {
             R.string.title_2,
     };
 
+
     FragmentPageAdapter(Context context, FragmentManager fm) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mContext = context;
@@ -31,17 +30,14 @@ public class FragmentPageAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new MovieFragment();
-                break;
+                return new MovieFavoriteFragment();
             case 1:
-                fragment = new TvFragment();
-                break;
+                return new TvFavoriteFragment();
             default:
         }
-        return Objects.requireNonNull(fragment);
+        return null;
     }
 
     @Override

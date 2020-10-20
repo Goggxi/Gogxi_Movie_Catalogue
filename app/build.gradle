@@ -50,6 +50,7 @@ dependencies {
 
     //testing
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation "junit:junit:$junitVersion"
     testImplementation "androidx.arch.core:core-testing:$archVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
@@ -57,4 +58,11 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+
+    //room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+
+    //Paging
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
 }
