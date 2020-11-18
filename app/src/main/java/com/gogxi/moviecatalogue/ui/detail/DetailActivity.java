@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,6 +23,7 @@ import com.gogxi.moviecatalogue.R;
 import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
 import com.gogxi.moviecatalogue.data.local.entity.TVEntity;
 import com.gogxi.moviecatalogue.ui.movie.MovieViewModel;
+import com.gogxi.moviecatalogue.ui.tv.TvViewModel;
 import com.gogxi.moviecatalogue.utils.Constants;
 import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
 
@@ -42,8 +42,8 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView mPoster;
     private ImageView mBackdrop;
     private Button mButtonFavorite;
-    MovieViewModel movieViewModel;
-    private Menu menu;
+    private MovieViewModel movieViewModel;
+    private TvViewModel tvViewModel;
     private Context mContext;
 
     @SuppressLint("SetTextI18n")
@@ -82,55 +82,19 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NotNull MenuItem item) {
-        switch (item.getItemId()) {
-//            case R.id.favorite:
-//                if (movie.isFavorite()) {
-//                    movieViewModel = obtainViewModel();
-//                    setFavoriteState(movie.isFavorite());
-//                    movieViewModel.toggleMovieFavorite(movie);
-//                    Toast.makeText(this, "di tambah ke favorite!", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    movieViewModel = obtainViewModel();
-//                    setFavoriteState(movie.isFavorite());
-//                    movieViewModel.toggleMovieFavorite(movie);
-//                    Toast.makeText(this, "di hapus dari favorite!", Toast.LENGTH_SHORT).show();
-//                }
-//                return true;
-            case android.R.id.home:
-                finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_favorite , menu);
-//        this.menu = menu;
-//        boolean state = movie.isFavorite();
-//        setFavoriteState(state);
-//        return true;
-//    }
-//
-//    private void setFavoriteState(boolean state) {
-//        if (menu == null) return;
-//        MenuItem menuItem = menu.findItem(R.id.favorite);
-//        if (state) {
-//            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_false));
-//        } else {
-//            menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_true));
-//        }
-//    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void populateMovie(){
         if (movie.isFavorite()){
-//            boolean state = movie.isFavorite();
-//            setFavoriteState(state);
             mButtonFavorite.setBackgroundResource(R.drawable.background_text_radius_after_press);
             mButtonFavorite.setTextColor(getColor(R.color.colorTextTertiary));
-            mButtonFavorite.setText("  Hapus dari Favorite");
+            mButtonFavorite.setText(R.string.add_favorite);
             Drawable drawableTrue = ContextCompat.getDrawable(
                     mContext,
                     R.drawable.ic_favorite_true
@@ -155,8 +119,8 @@ public class DetailActivity extends AppCompatActivity {
             if (movie.isFavorite()) {
                 mButtonFavorite.setBackgroundResource(R.drawable.background_text_radius_before_press);
                 mButtonFavorite.setTextColor(getColor(R.color.colorTextTertiary));
-                mButtonFavorite.setText("  Tambah Ke Favorite");
-                Toast.makeText(this, "di hapus dari favorite!", Toast.LENGTH_SHORT).show();
+                mButtonFavorite.setText(R.string.add_favorite);
+                Toast.makeText(this, R.string.toast_delete_favorite , Toast.LENGTH_SHORT).show();
                 movieViewModel.toggleMovieFavorite(movie);
                 Drawable drawableFalse = ContextCompat.getDrawable(
                         mContext,
@@ -178,8 +142,8 @@ public class DetailActivity extends AppCompatActivity {
             } else {
                 mButtonFavorite.setBackgroundResource(R.drawable.background_text_radius_after_press);
                 mButtonFavorite.setTextColor(getColor(R.color.colorTextTertiary));
-                Toast.makeText(this, "di tambah ke favorite!", Toast.LENGTH_SHORT).show();
-                mButtonFavorite.setText("  Hapus dari Favorite");
+                Toast.makeText(this, R.string.toast_add_favorite , Toast.LENGTH_SHORT).show();
+                mButtonFavorite.setText(R.string.delete_favorite);
                 movieViewModel.toggleMovieFavorite(movie);
                 Drawable drawableTrue = ContextCompat.getDrawable(
                         mContext,
@@ -216,7 +180,82 @@ public class DetailActivity extends AppCompatActivity {
                 .into(mBackdrop);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void populateTV(){
+        if (tv.isFavorite()){
+            mButtonFavorite.setBackgroundResource(R.drawable.background_text_radius_after_press);
+            mButtonFavorite.setTextColor(getColor(R.color.colorTextTertiary));
+            mButtonFavorite.setText(R.string.add_favorite);
+            Drawable drawableTrue = ContextCompat.getDrawable(
+                    mContext,
+                    R.drawable.ic_favorite_true
+            );
+            assert drawableTrue != null;
+            drawableTrue.setBounds(
+                    0, // left
+                    0, // top
+                    drawableTrue.getIntrinsicWidth(), // right
+                    drawableTrue.getIntrinsicHeight() // bottom
+            );
+            mButtonFavorite.setCompoundDrawables(
+                    drawableTrue, // Drawable left
+                    null, // Drawable top
+                    null, // Drawable right
+                    null // Drawable bottom
+            );
+        }
+
+        tvViewModel = tvobtainViewModel();
+        mButtonFavorite.setOnClickListener(v -> {
+            if (tv.isFavorite()) {
+                mButtonFavorite.setBackgroundResource(R.drawable.background_text_radius_before_press);
+                mButtonFavorite.setTextColor(getColor(R.color.colorTextTertiary));
+                mButtonFavorite.setText(R.string.add_favorite);
+                Toast.makeText(this, R.string.toast_delete_favorite , Toast.LENGTH_SHORT).show();
+                tvViewModel.toggleTvFavorite(tv);
+                Drawable drawableFalse = ContextCompat.getDrawable(
+                        mContext,
+                        R.drawable.ic_favorite_false
+                );
+                assert drawableFalse != null;
+                drawableFalse.setBounds(
+                        0, // left
+                        0, // top
+                        drawableFalse.getIntrinsicWidth(), // right
+                        drawableFalse.getIntrinsicHeight() // bottom
+                );
+                mButtonFavorite.setCompoundDrawables(
+                        drawableFalse, // Drawable left
+                        null, // Drawable top
+                        null, // Drawable right
+                        null // Drawable bottom
+                );
+            } else {
+                mButtonFavorite.setBackgroundResource(R.drawable.background_text_radius_after_press);
+                mButtonFavorite.setTextColor(getColor(R.color.colorTextTertiary));
+                Toast.makeText(this, R.string.toast_add_favorite , Toast.LENGTH_SHORT).show();
+                mButtonFavorite.setText(R.string.delete_favorite);
+                tvViewModel.toggleTvFavorite(tv);
+                Drawable drawableTrue = ContextCompat.getDrawable(
+                        mContext,
+                        R.drawable.ic_favorite_true
+                );
+                assert drawableTrue != null;
+                drawableTrue.setBounds(
+                        0, // left
+                        0, // top
+                        drawableTrue.getIntrinsicWidth(), // right
+                        drawableTrue.getIntrinsicHeight() // bottom
+                );
+                mButtonFavorite.setCompoundDrawables(
+                        drawableTrue, // Drawable left
+                        null, // Drawable top
+                        null, // Drawable right
+                        null // Drawable bottom
+                );
+            }
+        });
+
         mTitle.setText(tv.getName());
         mRelease.setText(tv.getFirst_air_date());
         mRate.setText(tv.getVote_average());
@@ -235,5 +274,10 @@ public class DetailActivity extends AppCompatActivity {
     private MovieViewModel obtainViewModel() {
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
         return ViewModelProviders.of(this, factory).get(MovieViewModel.class);
+    }
+
+    private TvViewModel tvobtainViewModel() {
+        ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
+        return ViewModelProviders.of(this, factory).get(TvViewModel.class);
     }
 }

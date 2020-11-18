@@ -1,4 +1,4 @@
-package com.gogxi.moviecatalogue.ui.favorite.movie;
+package com.gogxi.moviecatalogue.ui.favorite.tv;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,44 +14,44 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
+import com.gogxi.moviecatalogue.data.local.entity.TVEntity;
 import com.gogxi.moviecatalogue.ui.detail.DetailActivity;
 import com.gogxi.moviecatalogue.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdapter.ViewHolder> {
+class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.ViewHolder> {
     private Context context;
-    private List<MovieEntity> listMovie = new ArrayList<>();
+    private List<TVEntity> listTV = new ArrayList<>();
 
-    public MovieFavoriteAdapter(Context context) {
+    public TvFavoriteAdapter(Context context) {
         this.context = context;
-        listMovie = new ArrayList<>();
+        listTV = new ArrayList<>();
     }
 
-    void setMovie(List<MovieEntity> listMovie) {
-        if (listMovie == null) return;
-        this.listMovie.clear();
-        this.listMovie.addAll(listMovie);
+    void setTV(List<TVEntity> listTV) {
+        if (listTV == null) return;
+        this.listTV.clear();
+        this.listTV.addAll(listTV);
     }
 
     @NonNull
     @Override
-    public MovieFavoriteAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieFavoriteAdapter.ViewHolder holder, int position) {
-        MovieEntity movie = listMovie.get(position);
-        holder.bind(movie);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        TVEntity tv = listTV.get(position);
+        holder.bind(tv);
     }
 
     @Override
     public int getItemCount() {
-        return listMovie.size();
+        return listTV.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,27 +70,27 @@ class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdapter.Vie
             mBackdrop = itemView.findViewById(R.id.img_backdrop_items);
         }
 
-        void bind(MovieEntity movie) {
-            mTitle.setText(movie.getTitle());
-            mRate.setText(movie.getVote_average());
-            mRelease.setText(movie.getRelease_date());
+        void bind(TVEntity tv) {
+            mTitle.setText(tv.getName());
+            mRate.setText(tv.getVote_average());
+            mRelease.setText(tv.getFirst_air_date());
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
-                intent.putExtra(DetailActivity.EXTRA_MOVIE , movie);
+                intent.putExtra(DetailActivity.EXTRA_TV, tv);
                 itemView.getContext().startActivity(intent);
             });
             Glide.with(itemView.getContext())
-                    .load(Constants.POSTER_URL + movie.getPoster_path())
+                    .load(Constants.POSTER_URL + tv.getPoster_path())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mPoster);
             Glide.with(itemView.getContext())
-                    .load(Constants.BACKDROP_URL + movie.getBackdrop_path())
+                    .load(Constants.BACKDROP_URL + tv.getBackdrop_path())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
     }
 
-    private List<MovieEntity> getMovie() {
-        return listMovie;
+    private List<TVEntity> getTV() {
+        return listTV;
     }
 }

@@ -61,6 +61,7 @@ public class MovieFragment extends Fragment {
                 if (movie != null) {
                     switch (movie.status) {
                         case SUCCESS:
+                            tvNotFound.setVisibility(View.GONE);
                             mProgressMovie.setVisibility(View.GONE);
                             movieAdapter.setMovie(movie.data);
                             movieAdapter.notifyDataSetChanged();

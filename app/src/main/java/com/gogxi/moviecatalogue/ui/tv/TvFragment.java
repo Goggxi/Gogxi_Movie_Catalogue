@@ -65,6 +65,7 @@ public class TvFragment extends Fragment {
                 if (tvShow != null) {
                     switch (tvShow.status) {
                         case SUCCESS:
+                            tvNotFound.setVisibility(View.GONE);
                             mProgressTV.setVisibility(View.GONE);
                             tvAdapter.setTV(tvShow.data);
                             tvAdapter.notifyDataSetChanged();

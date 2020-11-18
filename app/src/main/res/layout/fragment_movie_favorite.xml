@@ -15,7 +15,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movie_favorite"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="6dp"/>
 
     <TextView
         android:id="@+id/tv_not_movie_favorite"
