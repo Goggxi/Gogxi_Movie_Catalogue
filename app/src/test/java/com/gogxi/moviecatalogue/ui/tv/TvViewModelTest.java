@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.gogxi.moviecatalogue.data.Repository;
-import com.gogxi.moviecatalogue.data.remote.entity.TV;
+import com.gogxi.moviecatalogue.data.remote.model.TV;
 import com.gogxi.moviecatalogue.utils.DataDummy;
 
 import org.junit.Before;

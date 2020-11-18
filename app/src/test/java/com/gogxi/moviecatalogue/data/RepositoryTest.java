@@ -3,8 +3,8 @@ package com.gogxi.moviecatalogue.data;
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import com.gogxi.moviecatalogue.data.remote.RemoteDataSource;
-import com.gogxi.moviecatalogue.data.remote.entity.Movie;
-import com.gogxi.moviecatalogue.data.remote.entity.TV;
+import com.gogxi.moviecatalogue.data.remote.model.Movie;
+import com.gogxi.moviecatalogue.data.remote.model.TV;
 import com.gogxi.moviecatalogue.utils.DataDummy;
 import com.gogxi.moviecatalogue.utils.LiveDataTestUtil;
 

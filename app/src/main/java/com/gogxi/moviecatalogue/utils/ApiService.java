@@ -1,7 +1,7 @@
 package com.gogxi.moviecatalogue.utils;
 
-import com.gogxi.moviecatalogue.data.remote.entity.MovieResponse;
-import com.gogxi.moviecatalogue.data.remote.entity.TVResponse;
+import com.gogxi.moviecatalogue.data.remote.response.MovieResponse;
+import com.gogxi.moviecatalogue.data.remote.response.TVResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

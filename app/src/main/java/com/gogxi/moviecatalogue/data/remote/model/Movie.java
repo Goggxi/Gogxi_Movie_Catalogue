@@ -1,4 +1,4 @@
-package com.gogxi.moviecatalogue.data.remote.entity;
+package com.gogxi.moviecatalogue.data.remote.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -29,11 +29,11 @@ public class Movie implements Parcelable {
 	private String backdropPath;
 
 	@SerializedName("vote_average")
-	private double voteAverage;
+	private String voteAverage;
 
 	private boolean favorite = false;
 
-	public Movie(int id, String title, String overview, String releaseDate, String originalLanguage, String posterPath, String backdropPath, double voteAverage, Boolean favorite) {
+	public Movie(int id, String title, String overview, String releaseDate, String originalLanguage, String posterPath, String backdropPath, String voteAverage, Boolean favorite) {
 		this.id = id;
 		this.title = title;
 		this.overview = overview;
@@ -55,7 +55,7 @@ public class Movie implements Parcelable {
 		originalLanguage = in.readString();
 		posterPath = in.readString();
 		backdropPath = in.readString();
-		voteAverage = in.readDouble();
+		voteAverage = in.readString();
 		favorite = in.readByte() != 0;
 	}
 
@@ -127,11 +127,11 @@ public class Movie implements Parcelable {
 		this.backdropPath = backdropPath;
 	}
 
-	public double getVoteAverage() {
+	public String getVoteAverage() {
 		return voteAverage;
 	}
 
-	public void setVoteAverage(int voteAverage) {
+	public void setVoteAverage(String voteAverage) {
 		this.voteAverage = voteAverage;
 	}
 
@@ -157,7 +157,7 @@ public class Movie implements Parcelable {
 		dest.writeString(originalLanguage);
 		dest.writeString(posterPath);
 		dest.writeString(backdropPath);
-		dest.writeDouble(voteAverage);
+		dest.writeString(voteAverage);
 		dest.writeByte((byte) (favorite ? 1 : 0));
 	}
 }

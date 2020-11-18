@@ -1,5 +1,6 @@
-package com.gogxi.moviecatalogue.data.remote.entity;
+package com.gogxi.moviecatalogue.data.remote.response;
 
+import com.gogxi.moviecatalogue.data.remote.model.Movie;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

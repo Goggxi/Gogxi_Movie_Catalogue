@@ -4,10 +4,10 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.gogxi.moviecatalogue.data.remote.entity.Movie;
-import com.gogxi.moviecatalogue.data.remote.entity.MovieResponse;
-import com.gogxi.moviecatalogue.data.remote.entity.TV;
-import com.gogxi.moviecatalogue.data.remote.entity.TVResponse;
+import com.gogxi.moviecatalogue.data.remote.model.Movie;
+import com.gogxi.moviecatalogue.data.remote.response.MovieResponse;
+import com.gogxi.moviecatalogue.data.remote.model.TV;
+import com.gogxi.moviecatalogue.data.remote.response.TVResponse;
 import com.gogxi.moviecatalogue.utils.ApiService;
 import com.gogxi.moviecatalogue.utils.EspressoIdlingResource;
 

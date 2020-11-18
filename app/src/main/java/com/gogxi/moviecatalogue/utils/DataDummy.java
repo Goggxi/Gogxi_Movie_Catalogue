@@ -1,7 +1,7 @@
 package com.gogxi.moviecatalogue.utils;
 
-import com.gogxi.moviecatalogue.data.remote.entity.Movie;
-import com.gogxi.moviecatalogue.data.remote.entity.TV;
+import com.gogxi.moviecatalogue.data.remote.model.Movie;
+import com.gogxi.moviecatalogue.data.remote.model.TV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class DataDummy {
                 "en",
                 "/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg",
                 "/5BwqwxMEjeFtdknRV792Svo0K1v.jpg",
-                6.0,
+                "6.0",
                 null
         ));
         movies.add(new Movie(
@@ -30,7 +30,7 @@ public class DataDummy {
                 "en",
                 "/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg",
                 "/stmYfCUGd8Iy6kAMBr6AmWqx8Bq.jpg",
-                7.6,
+                "7.6",
                 null
         ));
         movies.add(new Movie(
@@ -41,7 +41,7 @@ public class DataDummy {
                 "en",
                 "/gzlbb3yeVISpQ3REd3Ga1scWGTU.jpg",
                 "/ww7eC3BqSbFsyE5H5qMde8WkxJ2.jpg",
-                6.4,
+                "6.4",
                 null
         ));
         movies.add(new Movie(
@@ -52,7 +52,7 @@ public class DataDummy {
                 "pl",
                 "/plWcrWkuIPbNgQlIFwDr6jt2Mld.jpg",
                 "/gePCMmgv7r2DUO4pHZY2JE6fkKJ.jpg",
-                5.4,
+                "5.4",
                 null
         ));
         movies.add(new Movie(
@@ -63,7 +63,7 @@ public class DataDummy {
                 "en",
                 "/y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg",
                 "/upUy2QhMZEmtypPW3PdieKLAHxh.jpg",
-                7.2,
+                "7.2",
                 null
         ));
         movies.add(new Movie(
@@ -74,7 +74,7 @@ public class DataDummy {
                 "en",
                 "/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
                 "/jOzrELAzFxtMx2I4uDGHOotdfsS.jpg",
-                6.5,
+                "6.5",
                 null
         ));
         movies.add(new Movie(
@@ -85,7 +85,7 @@ public class DataDummy {
                 "en",
                 "/h4VB6m0RwcicVEZvzftYZyKXs6K.jpg",
                 "/uozb2VeD87YmhoUP1RrGWfzuCrr.jpg",
-                7.2,
+                "7.2",
                 null
         ));
         movies.add(new Movie(
@@ -96,7 +96,7 @@ public class DataDummy {
                 "en",
                 "/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg",
                 "/ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg",
-                7.2,
+                "7.2",
                 null
         ));
         movies.add(new Movie(
@@ -107,7 +107,7 @@ public class DataDummy {
                 "en",
                 "/bB42KDdfWkOvmzmYkmK58ZlCa9P.jpg",
                 "/oLma4sWjqlXVr0E3jpaXQCytuG9.jpg",
-                6.9,
+                "6.9",
                 null
         ));
         movies.add(new Movie(
@@ -118,7 +118,7 @@ public class DataDummy {
                 "en",
                 "/mWOkjqqzWiaFC65i2nFuMzM9jne.jpg",
                 "/wuJpiGNGv7wLg52ONizLrOugYp9.jpg",
-                0,
+                "0",
                 null
         ));
 
@@ -136,7 +136,7 @@ public class DataDummy {
                 "nl",
                 "/jQNOzoiaIQWxJAx8OUighnvnhRA.jpg",
                 "/gVVaukIifGJD78llZKgyT5FQbAe.jpg",
-                5.9,
+                "5.9",
                 null
         ));
         tv.add(new TV(
@@ -147,7 +147,7 @@ public class DataDummy {
                 "en",
                 "/6t6r1VGQTTQecN4V0sZeqsmdU9g.jpg",
                 "/cD9PxbrdWYgL7MUpD9eOYuiSe2P.jpg",
-                6.8,
+                "6.8",
                 null
         ));
         tv.add(new TV(
@@ -158,7 +158,7 @@ public class DataDummy {
                 "es",
                 "/MoEKaPFHABtA1xKoOteirGaHl1.jpg",
                 "/xGexTKCJDkl12dTW4YCBDXWb1AD.jpg",
-                8.4,
+                "8.4",
                 null
         ));
         tv.add(new TV(
@@ -169,7 +169,7 @@ public class DataDummy {
                 "en",
                 "/wHa6KOJAoNTFLFtp7wguUJKSnju.jpg",
                 "/6ZdQTBy20HzWudZthAV7NkZWfIb.jpg",
-                7.2,
+                "7.2",
                 null
         ));
         tv.add(new TV(
@@ -180,7 +180,7 @@ public class DataDummy {
                 "en",
                 "/y55oBgf6bVMI7sFNXwJDrSIxPQt.jpg",
                 "/yGNnjoIGOdQy3douq60tULY8teK.jpg",
-                8.2,
+                "8.2",
                 null
         ));
         tv.add(new TV(
@@ -191,7 +191,7 @@ public class DataDummy {
                 "zh",
                 "/5e2owvs9TWVsuIacTFxJGPp6KVW.jpg",
                 "/kCl7piWv3pypgYfyLFi7ZgFGlYV.jpg",
-                7.8,
+                "7.8",
                 null
         ));
         tv.add(new TV(
@@ -202,7 +202,7 @@ public class DataDummy {
                 "en",
                 "/qcr9bBY6MVeLzriKCmJOv1562uY.jpg",
                 "/5zS9trn5k6T6Oew85ZIEKUfRo91.jpg",
-                7.4,
+                "7.4",
                 null
         ));
         tv.add(new TV(
@@ -213,7 +213,7 @@ public class DataDummy {
                 "en",
                 "/3MNIPC2v9a43IJCwEYiiY327rKH.jpg",
                 "/xKDwo1JBaGs6v2fAd7kQVbakbuA.jpg",
-                6.6,
+                "6.6",
                 null
         ));
         tv.add(new TV(
@@ -224,7 +224,7 @@ public class DataDummy {
                 "es",
                 "/7mfPWKrNInkTbjVwp0EkaFYRHqD.jpg",
                 "/ck4WJ3dLXzUd3cNgujxuuk0QvlW.jpg",
-                8,
+                "8",
                 null
         ));
         tv.add(new TV(
@@ -235,7 +235,7 @@ public class DataDummy {
                 "en",
                 "/hSttE4mnZdmANv6snbK2RYncbbs.jpg",
                 "/iVAdLIbHIudPHPqzFB2nAl8pKr4.jpg",
-                7.2,
+                "7.2",
                 null
         ));
 

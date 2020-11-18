@@ -8,7 +8,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.remote.entity.Movie;
+import com.gogxi.moviecatalogue.data.remote.model.Movie;
 import com.gogxi.moviecatalogue.utils.DataDummy;
 import com.gogxi.moviecatalogue.utils.EspressoIdlingResource;
 

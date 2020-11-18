@@ -11,15 +11,15 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.remote.entity.Movie;
-import com.gogxi.moviecatalogue.data.remote.entity.TV;
+import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
+import com.gogxi.moviecatalogue.data.local.entity.TVEntity;
 import com.gogxi.moviecatalogue.utils.Constants;
 
 public class DetailActivity extends AppCompatActivity {
     public static final String  EXTRA_MOVIE = "extra_movie";
     public static final String EXTRA_TV = "extra_tv";
-    private Movie movie;
-    private TV tv;
+    private MovieEntity movie;
+    private TVEntity tv;
     private TextView mTitle;
     private TextView mRelease;
     private TextView mRate;
@@ -68,32 +68,32 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateMovie(){
         mTitle.setText(movie.getTitle());
-        mRelease.setText(movie.getReleaseDate());
-        mRate.setText(String.valueOf(movie.getVoteAverage()));
-        mLanguage.setText(movie.getOriginalLanguage());
+        mRelease.setText(movie.getRelease_date());
+        mRate.setText(movie.getVote_average());
+        mLanguage.setText(movie.getOriginal_language());
         mStoryline.setText(movie.getOverview());
         Glide.with(this)
-                .load(Constants.POSTER_URL + movie.getPosterPath())
+                .load(Constants.POSTER_URL + movie.getPoster_path())
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                 .into(mPoster);
         Glide.with(this)
-                .load(Constants.BACKDROP_URL + movie.getBackdropPath())
+                .load(Constants.BACKDROP_URL + movie.getBackdrop_path())
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                 .into(mBackdrop);
     }
 
     private void populateTV(){
         mTitle.setText(tv.getName());
-        mRelease.setText(tv.getFirstAirDate());
-        mRate.setText(String.valueOf(tv.getVoteAverage()));
-        mLanguage.setText(tv.getOriginalLanguage());
+        mRelease.setText(tv.getFirst_air_date());
+        mRate.setText(tv.getVote_average());
+        mLanguage.setText(tv.getOriginal_language());
         mStoryline.setText(tv.getOverview());
         Glide.with(this)
-                .load(Constants.POSTER_URL + tv.getPosterPath())
+                .load(Constants.POSTER_URL + tv.getPoster_path())
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                 .into(mPoster);
         Glide.with(this)
-                .load(Constants.BACKDROP_URL + tv.getBackdropPath())
+                .load(Constants.BACKDROP_URL + tv.getBackdrop_path())
                 .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                 .into(mBackdrop);
     }

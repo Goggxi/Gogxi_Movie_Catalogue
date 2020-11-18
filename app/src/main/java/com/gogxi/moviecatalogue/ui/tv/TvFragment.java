@@ -6,11 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +26,7 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
  * A simple {@link Fragment} subclass.
  */
 public class TvFragment extends Fragment {
+    private TVAdapter tvAdapter;
     private RecyclerView rvTV;
     private TextView tvNotFound;
     private ProgressBar mProgressTV;
@@ -51,32 +55,39 @@ public class TvFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (getActivity() != null) {
-            ViewModelFactory factory = ViewModelFactory.getInstance();
-            TvViewModel viewModel = new ViewModelProvider(this, factory).get(TvViewModel.class);
-            TVAdapter tvAdapter = new TVAdapter();
+            mProgressTV.setVisibility(View.VISIBLE);
+            TvViewModel tvViewModel = obtainViewModel(getActivity());
+            tvAdapter = new TVAdapter(getActivity());
+            mProgressTV.setVisibility(View.VISIBLE);
 
-            viewModel.getTv().observe(this, tvs -> {
-                tvAdapter.setTV(tvs);
-                tvAdapter.notifyDataSetChanged();
-                if (tvAdapter.getItemCount() == 0){
-                    tvNotFound.setVisibility(View.VISIBLE);
+            tvViewModel.setTvAction("load");
+            tvViewModel.tvShows.observe(getViewLifecycleOwner(), tvShow -> {
+                if (tvShow != null) {
+                    switch (tvShow.status) {
+                        case SUCCESS:
+                            mProgressTV.setVisibility(View.GONE);
+                            tvAdapter.setTV(tvShow.data);
+                            tvAdapter.notifyDataSetChanged();
+                            break;
+                        case LOADING:
+                            mProgressTV.setVisibility(View.VISIBLE);
+                            break;
+                        case ERROR:
+                            tvNotFound.setVisibility(View.VISIBLE);
+                            mProgressTV.setVisibility(View.GONE);
+                            Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
                 }
-                showLoading(true);
             });
-
             rvTV.setLayoutManager(new LinearLayoutManager(getContext()));
             rvTV.setHasFixedSize(true);
-            rvTV.setAdapter(new ScaleInAnimationAdapter(tvAdapter));
-
-            showLoading(false);
+            rvTV.setAdapter(tvAdapter);
         }
     }
 
-    private void showLoading(boolean state) {
-        if (state){
-            mProgressTV.setVisibility(View.GONE);
-        } else {
-            mProgressTV.setVisibility(View.VISIBLE);
-        }
+    private static TvViewModel obtainViewModel(FragmentActivity activity) {
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+        return ViewModelProviders.of(activity, factory).get(TvViewModel.class);
     }
 }

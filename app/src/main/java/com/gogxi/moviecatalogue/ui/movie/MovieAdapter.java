@@ -1,5 +1,6 @@
 package com.gogxi.moviecatalogue.ui.movie;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.remote.entity.Movie;
+import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
+import com.gogxi.moviecatalogue.data.remote.model.Movie;
 import com.gogxi.moviecatalogue.ui.detail.DetailActivity;
 import com.gogxi.moviecatalogue.utils.Constants;
 
@@ -21,9 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
-    private List<Movie> listMovie = new ArrayList<>();
+    private Context context;
+    private List<MovieEntity> listMovie = new ArrayList<>();
 
-    void setMovie(List<Movie> listMovie) {
+    public MovieAdapter(Context context) {
+        this.context = context;
+        listMovie = new ArrayList<>();
+    }
+
+    void setMovie(List<MovieEntity> listMovie) {
         if (listMovie == null) return;
         this.listMovie.clear();
         this.listMovie.addAll(listMovie);
@@ -38,7 +46,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Movie movie = listMovie.get(position);
+        MovieEntity movie = listMovie.get(position);
         holder.bind(movie);
     }
 
@@ -63,23 +71,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             mBackdrop = itemView.findViewById(R.id.img_backdrop_items);
         }
 
-        void bind(Movie movie) {
+        void bind(MovieEntity movie) {
             mTitle.setText(movie.getTitle());
-            mRate.setText(String.valueOf(movie.getVoteAverage()));
-            mRelease.setText(movie.getReleaseDate());
+            mRate.setText(movie.getVote_average());
+            mRelease.setText(movie.getRelease_date());
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
                 intent.putExtra(DetailActivity.EXTRA_MOVIE , movie);
                 itemView.getContext().startActivity(intent);
             });
             Glide.with(itemView.getContext())
-                    .load(Constants.POSTER_URL + movie.getPosterPath())
+                    .load(Constants.POSTER_URL + movie.getPoster_path())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mPoster);
             Glide.with(itemView.getContext())
-                    .load(Constants.BACKDROP_URL + movie.getBackdropPath())
+                    .load(Constants.BACKDROP_URL + movie.getBackdrop_path())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
+    }
+
+    private List<MovieEntity> getMovie() {
+        return listMovie;
     }
 }

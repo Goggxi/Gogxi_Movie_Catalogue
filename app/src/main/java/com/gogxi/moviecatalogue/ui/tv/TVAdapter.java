@@ -1,5 +1,6 @@
 package com.gogxi.moviecatalogue.ui.tv;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.remote.entity.TV;
+import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
+import com.gogxi.moviecatalogue.data.local.entity.TVEntity;
+import com.gogxi.moviecatalogue.data.remote.model.TV;
 import com.gogxi.moviecatalogue.ui.detail.DetailActivity;
 import com.gogxi.moviecatalogue.utils.Constants;
 
@@ -21,9 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
-    private List<TV> listTV = new ArrayList<>();
+    private Context context;
+    private List<TVEntity> listTV = new ArrayList<>();
 
-    void setTV(List<TV> listTV) {
+    public TVAdapter(Context context) {
+        this.context = context;
+        listTV = new ArrayList<>();
+    }
+
+    void setTV(List<TVEntity> listTV) {
         if (listTV == null) return;
         this.listTV.clear();
         this.listTV.addAll(listTV);
@@ -38,7 +47,7 @@ public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TV tv = listTV.get(position);
+        TVEntity tv = listTV.get(position);
         holder.bind(tv);
     }
 
@@ -63,23 +72,27 @@ public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
             mBackdrop = itemView.findViewById(R.id.img_backdrop_items);
         }
 
-        void bind(TV tv) {
+        void bind(TVEntity tv) {
             mTitle.setText(tv.getName());
-            mRate.setText(String.valueOf(tv.getVoteAverage()));
-            mRelease.setText(tv.getFirstAirDate());
+            mRate.setText(tv.getVote_average());
+            mRelease.setText(tv.getFirst_air_date());
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
                 intent.putExtra(DetailActivity.EXTRA_TV, tv);
                 itemView.getContext().startActivity(intent);
             });
             Glide.with(itemView.getContext())
-                    .load(Constants.POSTER_URL + tv.getPosterPath())
+                    .load(Constants.POSTER_URL + tv.getPoster_path())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mPoster);
             Glide.with(itemView.getContext())
-                    .load(Constants.BACKDROP_URL + tv.getBackdropPath())
+                    .load(Constants.BACKDROP_URL + tv.getBackdrop_path())
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
+    }
+
+    private List<TVEntity> getTV() {
+        return listTV;
     }
 }
