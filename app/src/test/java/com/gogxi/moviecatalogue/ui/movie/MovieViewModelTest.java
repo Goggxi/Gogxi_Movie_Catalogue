@@ -5,55 +5,45 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.gogxi.moviecatalogue.data.Repository;
-import com.gogxi.moviecatalogue.data.remote.model.Movie;
-import com.gogxi.moviecatalogue.utils.DataDummy;
+import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
+import com.gogxi.moviecatalogue.utils.FakeDataDummy;
+import com.gogxi.moviecatalogue.utils.Resource;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieViewModelTest {
-    private MovieViewModel viewModel;
+    private MovieViewModel movieViewModel;
+    private Repository repository = mock(Repository.class);
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
-    @Mock
-    private Repository repository;
-
-    @Mock
-    private Observer<List<Movie>> observer;
-
     @Before
-    public void setUp(){
-        viewModel = new MovieViewModel(repository);
+    public void setUp() {
+        movieViewModel = new MovieViewModel(repository);
     }
 
     @Test
-    public void getMovie() {
-        List<Movie> dummyMovie = DataDummy.generateDummyMovie();
-        MutableLiveData<List<Movie>> movieList = new MutableLiveData<>();
-        movieList.setValue(dummyMovie);
+    public void getMovies() {
+        Resource<List<MovieEntity>> resource = Resource.success(FakeDataDummy.generateDummyRemoteMovie());
+        MutableLiveData<Resource<List<MovieEntity>>> movies = new MutableLiveData<>();
+        movies.setValue(resource);
 
-        when(repository.getMovie()).thenReturn(movieList);
-        List<Movie> movie = viewModel.getMovie().getValue();
-        verify(repository).getMovie();
-
-        viewModel.getMovie().observeForever(observer);
-        verify(observer).onChanged(dummyMovie);
-
-        assertNotNull(movie);
-        assertEquals(10 ,movie.size());
+        when(repository.get_movies()).thenReturn(movies);
+        Observer<Resource<List<MovieEntity>>> observer = mock(Observer.class);
+        movieViewModel.setMovieAction("load");
+        movieViewModel.movies.observeForever(observer);
+        verify(observer).onChanged(resource);
     }
 }
