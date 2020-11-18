@@ -7,4 +7,6 @@
     <color name="colorAccentLight">#ffaa89</color>
     <color name="colorAccentDark">#c74830</color>
     <color name="colorTextTertiary">#EFEFEF</color>
+    <color name="colorTextTertiary2">#939393</color>
+    <color name="colorTextTertiary3">#717171</color>
 </resources>

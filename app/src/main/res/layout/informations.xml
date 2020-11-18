@@ -101,4 +101,23 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_rate"
             tools:text="English" />
 
+        <Button
+            android:id="@+id/btn_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/background_text_radius_before_press"
+            android:drawableStart="@drawable/ic_favorite_false"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:textColor="@color/colorTextTertiary"
+            android:text="   Tambah ke favorite"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toEndOf="@+id/img_poster" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
