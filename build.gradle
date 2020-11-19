@@ -56,7 +56,6 @@ ext {
 
     //room
     roomVersion = '2.2.5'
-    persistenceRoomVersion = '1.1.1'
 
     //paging
     pagingVersion = '2.1.2'
