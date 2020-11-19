@@ -1,6 +1,5 @@
 package com.gogxi.moviecatalogue.ui.favorite.tv;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.ViewHolder> {
-    private Context context;
-    private List<TVEntity> listTV = new ArrayList<>();
+    private List<TVEntity> listTV;
 
-    public TvFavoriteAdapter(Context context) {
-        this.context = context;
+    public TvFavoriteAdapter() {
         listTV = new ArrayList<>();
     }
 
@@ -88,9 +85,5 @@ class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.ViewHolde
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
-    }
-
-    private List<TVEntity> getTV() {
-        return listTV;
     }
 }

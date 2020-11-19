@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -94,7 +94,7 @@ public class DetailActivity extends AppCompatActivity {
         if (movie.isFavorite()){
             mButtonFavorite.setBackgroundResource(R.drawable.background_text_radius_after_press);
             mButtonFavorite.setTextColor(getColor(R.color.colorTextTertiary));
-            mButtonFavorite.setText(R.string.add_favorite);
+            mButtonFavorite.setText(R.string.delete_favorite);
             Drawable drawableTrue = ContextCompat.getDrawable(
                     mContext,
                     R.drawable.ic_favorite_true
@@ -185,7 +185,7 @@ public class DetailActivity extends AppCompatActivity {
         if (tv.isFavorite()){
             mButtonFavorite.setBackgroundResource(R.drawable.background_text_radius_after_press);
             mButtonFavorite.setTextColor(getColor(R.color.colorTextTertiary));
-            mButtonFavorite.setText(R.string.add_favorite);
+            mButtonFavorite.setText(R.string.delete_favorite);
             Drawable drawableTrue = ContextCompat.getDrawable(
                     mContext,
                     R.drawable.ic_favorite_true
@@ -273,11 +273,11 @@ public class DetailActivity extends AppCompatActivity {
 
     private MovieViewModel obtainViewModel() {
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
-        return ViewModelProviders.of(this, factory).get(MovieViewModel.class);
+        return new ViewModelProvider(this, factory).get(MovieViewModel.class);
     }
 
     private TvViewModel tvobtainViewModel() {
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
-        return ViewModelProviders.of(this, factory).get(TvViewModel.class);
+        return new ViewModelProvider(this, factory).get(TvViewModel.class);
     }
 }

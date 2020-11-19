@@ -22,13 +22,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.gogxi.moviecatalogue.utils.Constants.API_KEY;
+import static com.gogxi.moviecatalogue.utils.Constants.LANGUAGE;
 import static com.gogxi.moviecatalogue.utils.Constants.PAGE;
+import static com.gogxi.moviecatalogue.utils.Constants.SERVICE_LATENCY_IN_MILLIS;
 
 public class RemoteRepository {
     private static RemoteRepository INSTANCE;
     private ApiService apiService;
-    private static final String LANGUAGE = "en-US";
-    private final long SERVICE_LATENCY_IN_MILLIS = 2000;
 
     private RemoteRepository(ApiService apiService) {
         this.apiService = apiService;

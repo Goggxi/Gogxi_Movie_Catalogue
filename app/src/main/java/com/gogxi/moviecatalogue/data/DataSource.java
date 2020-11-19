@@ -21,8 +21,4 @@ public interface DataSource {
     void set_favorite_movie(MovieEntity movie, boolean state);
 
     void set_favorite_tv(TVEntity tvShow, boolean state);
-
-//    LiveData<List<Movie>> getMovie();
-//
-//    LiveData<List<TV>> getTv();
 }

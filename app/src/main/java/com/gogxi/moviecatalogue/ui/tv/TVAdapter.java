@@ -1,6 +1,5 @@
 package com.gogxi.moviecatalogue.ui.tv;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
 import com.gogxi.moviecatalogue.data.local.entity.TVEntity;
-import com.gogxi.moviecatalogue.data.remote.model.TV;
 import com.gogxi.moviecatalogue.ui.detail.DetailActivity;
 import com.gogxi.moviecatalogue.utils.Constants;
 
@@ -24,11 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
-    private Context context;
-    private List<TVEntity> listTV = new ArrayList<>();
+    private List<TVEntity> listTV;
 
-    public TVAdapter(Context context) {
-        this.context = context;
+    public TVAdapter() {
         listTV = new ArrayList<>();
     }
 
@@ -90,9 +85,5 @@ public class TVAdapter extends RecyclerView.Adapter<TVAdapter.ViewHolder> {
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
-    }
-
-    private List<TVEntity> getTV() {
-        return listTV;
     }
 }

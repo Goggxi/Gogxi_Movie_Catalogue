@@ -13,14 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gogxi.moviecatalogue.R;
 import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
-
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,7 +54,7 @@ public class TvFragment extends Fragment {
         if (getActivity() != null) {
             mProgressTV.setVisibility(View.VISIBLE);
             TvViewModel tvViewModel = obtainViewModel(getActivity());
-            tvAdapter = new TVAdapter(getActivity());
+            tvAdapter = new TVAdapter();
             mProgressTV.setVisibility(View.VISIBLE);
 
             tvViewModel.setTvAction("load");
@@ -89,6 +86,6 @@ public class TvFragment extends Fragment {
 
     private static TvViewModel obtainViewModel(FragmentActivity activity) {
         ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-        return ViewModelProviders.of(activity, factory).get(TvViewModel.class);
+        return new ViewModelProvider(activity, factory).get(TvViewModel.class);
     }
 }

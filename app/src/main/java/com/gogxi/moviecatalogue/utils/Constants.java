@@ -10,8 +10,9 @@ public class Constants {
 
     public static final String BACKDROP_URL = "https://image.tmdb.org/t/p/w780";
 
-    public static final int PAGE = 2;
+    public static final int PAGE = 1;
 
     public static final String LANGUAGE = "en-US";
 
+    public static final long SERVICE_LATENCY_IN_MILLIS = 2000;
 }

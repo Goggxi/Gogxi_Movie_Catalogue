@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.gogxi.moviecatalogue"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -31,6 +31,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.legacy:legacy-support-v4:$legacyVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
@@ -41,21 +42,9 @@ dependencies {
     implementation "jp.wasabeef:recyclerview-animators:$rvAnimatorsVersion"
 
     //architecture component
-//    implementation "androidx.lifecycle:lifecycle-viewmodel:$archLifecycleVersion"
-//    implementation "androidx.lifecycle:lifecycle-livedata:$archLifecycleVersion"
-    implementation 'androidx.room:room-runtime:2.2.5'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    annotationProcessor 'androidx.room:room-compiler:2.2.5'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     //noinspection LifecycleAnnotationProcessorWithJava8
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
 
     //Network API
     implementation "com.squareup.retrofit2:retrofit:$retrofit2Vesrion"
@@ -63,19 +52,20 @@ dependencies {
 
     //testing
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'org.jetbrains:annotations:15.0'
-    testImplementation "junit:junit:$junitVersion"
+    implementation "org.jetbrains:annotations:$annotationsVersion"
     testImplementation "androidx.arch.core:core-testing:$archVersion"
+    testImplementation "junit:junit:$junitVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$junitTestVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    androidTestImplementation "androidx.test:core:$androidXTestVersion"
 
-    //room
-//    implementation "androidx.room:room-runtime:$roomVersion"
-//    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+//    room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
 
     //Paging
     implementation "androidx.paging:paging-runtime:$pagingVersion"

@@ -1,6 +1,5 @@
 package com.gogxi.moviecatalogue.ui.favorite.movie;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdapter.ViewHolder> {
-    private Context context;
-    private List<MovieEntity> listMovie = new ArrayList<>();
+    private List<MovieEntity> listMovie;
 
-    public MovieFavoriteAdapter(Context context) {
-        this.context = context;
+    public MovieFavoriteAdapter() {
         listMovie = new ArrayList<>();
     }
 
@@ -88,9 +85,5 @@ class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdapter.Vie
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
-    }
-
-    private List<MovieEntity> getMovie() {
-        return listMovie;
     }
 }

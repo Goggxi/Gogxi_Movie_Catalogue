@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.gogxi.moviecatalogue.data.Repository;
 import com.gogxi.moviecatalogue.data.local.entity.TVEntity;
-import com.gogxi.moviecatalogue.data.remote.model.TV;
 import com.gogxi.moviecatalogue.utils.Resource;
 
 import java.util.List;

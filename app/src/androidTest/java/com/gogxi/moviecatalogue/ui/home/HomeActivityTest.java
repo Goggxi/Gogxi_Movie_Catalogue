@@ -52,14 +52,21 @@ public class HomeActivityTest {
     }
 
     @Test
+    public void loadFavoriteMovie() {
+        onView(withId(R.id.navigation_favorite)).perform(click());
+        onView(withText("Movie")).perform(click());
+        onView(withId(R.id.rv_movie_favorite)).check(matches(isDisplayed()));
+    }
+
+    @Test
     public void loadTV() {
-        onView(withText("TV Show")).perform(click());
+        onView(withId(R.id.navigation_tv)).perform(click());
         onView(withId(R.id.rv_tv)).check(matches(isDisplayed()));
     }
 
     @Test
     public void loadDetailTV() {
-        onView(withText("TV Show")).perform(click());
+        onView(withId(R.id.navigation_tv)).perform(click());
         onView(withId(R.id.rv_tv)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.img_backdrop)).check(matches(isDisplayed()));
         onView(withId(R.id.img_poster)).check(matches(isDisplayed()));
@@ -68,5 +75,12 @@ public class HomeActivityTest {
         onView(withId(R.id.tv_rate)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_language)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_storyline)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void loadFavoriteTV() {
+        onView(withId(R.id.navigation_favorite)).perform(click());
+        onView(withText("TV Show")).perform(click());
+        onView(withId(R.id.rv_tv_favorite)).check(matches(isDisplayed()));
     }
 }

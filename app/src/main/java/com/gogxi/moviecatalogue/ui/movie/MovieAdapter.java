@@ -1,6 +1,5 @@
 package com.gogxi.moviecatalogue.ui.movie;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogxi.moviecatalogue.R;
 import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
-import com.gogxi.moviecatalogue.data.remote.model.Movie;
 import com.gogxi.moviecatalogue.ui.detail.DetailActivity;
 import com.gogxi.moviecatalogue.utils.Constants;
 
@@ -23,11 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
-    private Context context;
-    private List<MovieEntity> listMovie = new ArrayList<>();
+    private List<MovieEntity> listMovie;
 
-    public MovieAdapter(Context context) {
-        this.context = context;
+    public MovieAdapter() {
         listMovie = new ArrayList<>();
     }
 
@@ -89,9 +85,5 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error))
                     .into(mBackdrop);
         }
-    }
-
-    private List<MovieEntity> getMovie() {
-        return listMovie;
     }
 }

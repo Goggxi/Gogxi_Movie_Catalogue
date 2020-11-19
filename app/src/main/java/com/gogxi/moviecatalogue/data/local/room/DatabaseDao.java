@@ -20,9 +20,6 @@ public interface DatabaseDao {
     @Query("SELECT * FROM Movies")
     LiveData<List<MovieEntity>> get_movies();
 
-    @Query("SELECT * FROM Movies WHERE id = :id")
-    LiveData<MovieEntity> get_detail_movie(long id);
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert_movie(List<MovieEntity> movieEntities);
 
@@ -36,9 +33,6 @@ public interface DatabaseDao {
     @WorkerThread
     @Query("SELECT * FROM TVs")
     LiveData<List<TVEntity>> get_tvs();
-
-    @Query("SELECT * FROM TVs WHERE id = :id")
-    LiveData<TVEntity> get_detail_tv(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert_tv(List<TVEntity> tvEntities);

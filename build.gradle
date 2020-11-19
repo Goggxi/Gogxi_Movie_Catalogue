@@ -31,7 +31,7 @@ task clean(type: Delete) {
 ext {
     //dependencies version
     appCompatVersion = '1.2.0'
-    constraintLayoutVersion = '2.0.2'
+    constraintLayoutVersion = '2.0.4'
     legacyVersion = '1.0.0'
 
     materialVersion = '1.3.0-alpha03'
@@ -46,14 +46,17 @@ ext {
     retrofit2Vesrion = '2.8.1'
 
     //testing
-    junitVersion = '4.12'
+    annotationsVersion = '15.0'
+    junitTestVersion = '1.1.2'
+    junitVersion = '4.13'
     espressoVersion = '3.3.0'
     androidXTestVersion = '1.3.0'
-    mockitoVersion = '2.23.4'
+    mockitoVersion = '3.0.0'
     archVersion = '2.1.0'
 
     //room
     roomVersion = '2.2.5'
+    persistenceRoomVersion = '1.1.1'
 
     //paging
     pagingVersion = '2.1.2'

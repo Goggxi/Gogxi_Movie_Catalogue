@@ -1,21 +1,20 @@
 package com.gogxi.moviecatalogue.ui.favorite.tv;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gogxi.moviecatalogue.R;
 import com.gogxi.moviecatalogue.viewmodel.ViewModelFactory;
@@ -51,7 +50,7 @@ public class TvFavoriteFragment extends Fragment {
         if (getActivity() != null) {
             progressBar.setVisibility(View.VISIBLE);
             TvFavoriteViewModel tvFavoriteViewModel = obtainViewModel(getActivity());
-            tvFavoriteAdapter = new TvFavoriteAdapter(getActivity());
+            tvFavoriteAdapter = new TvFavoriteAdapter();
 
             tvFavoriteViewModel.getFavoriteTv().observe(getViewLifecycleOwner(), tv -> {
                 if (tv != null) {
@@ -84,6 +83,6 @@ public class TvFavoriteFragment extends Fragment {
 
     private static TvFavoriteViewModel obtainViewModel(FragmentActivity activity) {
         ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-        return ViewModelProviders.of(activity, factory).get(TvFavoriteViewModel.class);
+        return new ViewModelProvider(activity, factory).get(TvFavoriteViewModel.class);
     }
 }

@@ -182,6 +182,5 @@ public class Repository implements DataSource {
     public void set_favorite_tv(TVEntity tvEntity, boolean state) {
         Runnable runnable = () -> localRepository.set_favorite_tv(tvEntity, state);
         appExecutors.diskIO().execute(runnable);
-
     }
 }

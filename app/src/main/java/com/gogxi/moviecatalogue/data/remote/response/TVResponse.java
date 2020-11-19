@@ -10,6 +10,10 @@ public class TVResponse {
 	@SerializedName("results")
 	private List<TV> results;
 
+	public TVResponse(List<TV> results) {
+		this.results = results;
+	}
+
 	public List<TV> getResults() {
 		return results;
 	}

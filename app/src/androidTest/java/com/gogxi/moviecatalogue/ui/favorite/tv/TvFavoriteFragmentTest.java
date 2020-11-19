@@ -1,4 +1,4 @@
-package com.gogxi.moviecatalogue.ui.tv;
+package com.gogxi.moviecatalogue.ui.favorite.tv;
 
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.rule.ActivityTestRule;
@@ -6,7 +6,6 @@ import androidx.test.rule.ActivityTestRule;
 import com.gogxi.moviecatalogue.R;
 import com.gogxi.moviecatalogue.SingleFragmentActivity;
 import com.gogxi.moviecatalogue.utils.EspressoIdlingResource;
-import com.gogxi.moviecatalogue.utils.RVItemCountAssertion;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,25 +17,24 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-public class TvFragmentTest {
+public class TvFavoriteFragmentTest {
     @Rule
-    public final ActivityTestRule<SingleFragmentActivity> activityTestRule = new ActivityTestRule<>(SingleFragmentActivity.class);
-    private final TvFragment tvFragment = new TvFragment();
+    public final ActivityTestRule<SingleFragmentActivity> activityRule = new ActivityTestRule<>(SingleFragmentActivity.class);
+    private final TvFavoriteFragment tvFavoriteFragment = new TvFavoriteFragment();
 
     @Before
-    public void setUp() {
+    public void setup() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource());
-        activityTestRule.getActivity().setFragment(tvFragment);
+        activityRule.getActivity().setFragment(tvFavoriteFragment);
     }
 
     @After
-    public void tearDown() {
+    public void teardown() {
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
     }
 
     @Test
-    public void loadTv() {
-        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()));
-        onView(withId(R.id.rv_tv)).check(new RVItemCountAssertion(20));
+    public void loadMovies() {
+        onView(withId(R.id.rv_tv_favorite)).check(matches(isDisplayed()));
     }
 }
