@@ -8,7 +8,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import com.gogxi.moviecatalogue.R;
-import com.gogxi.moviecatalogue.data.remote.model.Movie;
+import com.gogxi.moviecatalogue.data.local.entity.MovieEntity;
 import com.gogxi.moviecatalogue.utils.DataDummy;
 import com.gogxi.moviecatalogue.utils.EspressoIdlingResource;
 
@@ -24,7 +24,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class DetailMovieTest {
-    private Movie dummyMovie = DataDummy.generateDummyMovie().get(5);
+    private MovieEntity dummyMovie = DataDummy.generateDummyRemoteMovie().get(5);
 
     @Rule
     public ActivityTestRule<DetailActivity> activityRule = new ActivityTestRule<DetailActivity>(DetailActivity.class) {
@@ -56,13 +56,13 @@ public class DetailMovieTest {
         onView(withId(R.id.tv_title)).check(matches(withText(dummyMovie.getTitle())));
 
         onView(withId(R.id.tv_release)).check(matches(isDisplayed()));
-        onView(withId(R.id.tv_release)).check(matches(withText(dummyMovie.getReleaseDate())));
+        onView(withId(R.id.tv_release)).check(matches(withText(dummyMovie.getRelease_date())));
 
         onView(withId(R.id.tv_rate)).check(matches(isDisplayed()));
-        onView(withId(R.id.tv_rate)).check(matches(withText(String.valueOf(dummyMovie.getVoteAverage()))));
+        onView(withId(R.id.tv_rate)).check(matches(withText(dummyMovie.getVote_average())));
 
         onView(withId(R.id.tv_language)).check(matches(isDisplayed()));
-        onView(withId(R.id.tv_language)).check(matches(withText(dummyMovie.getOriginalLanguage())));
+        onView(withId(R.id.tv_language)).check(matches(withText(dummyMovie.getOriginal_language())));
 
         onView(withId(R.id.tv_storyline)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_storyline)).check(matches(withText(dummyMovie.getOverview())));

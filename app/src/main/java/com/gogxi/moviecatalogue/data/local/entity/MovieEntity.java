@@ -3,6 +3,7 @@ package com.gogxi.moviecatalogue.data.local.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -13,6 +14,7 @@ import com.google.gson.annotations.SerializedName;
 public class MovieEntity implements Parcelable {
 
     @PrimaryKey
+    @NonNull
     @ColumnInfo(name = "id")
     @SerializedName("id")
     private long id;
