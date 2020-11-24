@@ -12,7 +12,7 @@ Repository ini berisi source code submission 1-3 (FINAL).
 - [x] Menerapkan Unit Test
 - [x] Menerapkan Instrument Test
 
-## Pengngat !!!
+## Pengingat !!!
 Silahkan di clone, dan di jadikan sebagai Refrensi !!!
 
 ## Tampilan Aplikasi
