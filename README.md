@@ -1,6 +1,6 @@
 ## Deskripsi
 
-Project Gogxi-movie_Catalogue adalah submission project untuk kelas [__Belajar Android Jetpack Pro__](https://www.dicoding.com/academies/129).
+Project Gogxi_movie_Catalogue adalah submission project untuk kelas [__Belajar Android Jetpack Pro__](https://www.dicoding.com/academies/129).
 
 Repository ini berisi source code submission 1-3 (FINAL).
 
