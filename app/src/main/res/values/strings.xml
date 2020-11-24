@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Movie Catalogue</string>
+
+    <string name="lang">en-US</string>
+    <string name="detail">Detail</string>
+    <string name="title_1">Movie</string>
+    <string name="title_2">TV Show</string>
+    <string name="not_found">Not Found</string>
+    <string name="image">image</string>
+    <string name="storyline">storyline</string>
+    <string name="favorite">favorite</string>
+    <string name="tv_show">tv_show</string>
+    <string name="movie">movie</string>
+    <string name="title_home">title_home</string>
+    <string name="delete_favorite">"  Hapus dari Favorite"</string>
+    <string name="add_favorite">"  Tambah ke Favorite"</string>
+    <string name="toast_add_favorite">"di tambah ke favorite!"</string>
+    <string name="toast_delete_favorite">"di hapus dari favorite!"</string>
+    <string name="error">"error"</string>
 </resources>

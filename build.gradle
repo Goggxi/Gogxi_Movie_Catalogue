@@ -8,7 +8,7 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath 'com.android.tools.build:gradle:4.0.2'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -26,4 +26,37 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    //dependencies version
+    appCompatVersion = '1.2.0'
+    constraintLayoutVersion = '2.0.4'
+    legacyVersion = '1.0.0'
+
+    materialVersion = '1.3.0-alpha03'
+    recyclerViewVersion = '1.1.0'
+    glideVersion = '4.11.0'
+    roundedimageviewVersion = '2.3.0'
+    cardviewVersion = '1.0.0'
+    rvAnimatorsVersion = '3.0.0'
+
+    archLifecycleVersion = '2.2.0'
+
+    retrofit2Vesrion = '2.8.1'
+
+    //testing
+    annotationsVersion = '15.0'
+    junitTestVersion = '1.1.2'
+    junitVersion = '4.13'
+    espressoVersion = '3.3.0'
+    androidXTestVersion = '1.3.0'
+    mockitoVersion = '3.0.0'
+    archVersion = '2.1.0'
+
+    //room
+    roomVersion = '2.2.5'
+
+    //paging
+    pagingVersion = '2.1.2'
 }
